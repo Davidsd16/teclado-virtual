@@ -64,6 +64,8 @@ const keys = [
 let mayus = false; // Variable para controlar si las mayúsculas están activadas
 let shift = false; // Variable para controlar si la tecla shift está presionada
 
+renderKeyboard();
+
 // Función para renderizar el teclado en el DOM
 function renderKeyboard() {
     const keyboardContainer = document.querySelector('#keyboard-container');
@@ -97,4 +99,23 @@ function renderKeyboard() {
             `;
         });
     });
+
+    // Añade un espacio vacío al principio de la primera fila del teclado
+    layers[0].push(empty);
+    // Añade un espacio vacío al inicio de la segunda fila del teclado
+    layers[1].unshift(empty);
+
+    // Convierte cada fila del teclado en una cadena HTML
+    const htmlLayers = layers.map(layer => {
+        return layer.join("");
+    });
+
+    // Limpia el contenido del contenedor del teclado en el DOM
+    keyboardContainer.innerHTML = '';
+
+    // Renderiza cada fila del teclado en el DOM
+    htmlLayers.forEach(layer => {
+        keyboardContainer.innerHTML += `<div class=layer>${layer}</div>`;
+    });
+
 }
