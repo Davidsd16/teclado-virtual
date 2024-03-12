@@ -87,15 +87,13 @@ function renderKeyboard() {
 
             // Renderización de teclas normales
             return `
-                <button class="key key-normal"
-                ${
+                <button class="key key-normal">${
                     shift ? key[1] // Si shift está activado, mostrar el carácter alternativo (mayúscula)
                     : mayus && key[0].toLowerCase().charCodeAt(0) > 97 &&
                     key[0].toLowerCase().charCodeAt(0) < 122 
                     ? key[1] // Si mayúsculas están activadas y la tecla es una letra, mostrar la mayúscula
                     : key[0] // Mostrar el carácter normal
-                }
-                </button>
+                }</button>
             `;
         });
     });
