@@ -116,4 +116,13 @@ function renderKeyboard() {
         keyboardContainer.innerHTML += `<div class=layer>${layer}</div>`;
     });
 
+    // Seleccionar todas las teclas del teclado utilizando su clase CSS ".key" y añadir un evento de clic a cada una
+    document.querySelectorAll('.key').forEach(key => {
+        // Añadir un event listener para el evento de clic
+        key.addEventListener('click', e => {
+            // Cuando se hace clic en una tecla, mostrar un mensaje de prueba en la consola
+            console.log('test click btn');
+        });
+    });
+
 }
