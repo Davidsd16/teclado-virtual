@@ -63,6 +63,7 @@ const keys = [
 
 let mayus = false; // Variable para controlar si las mayúsculas están activadas
 let shift = false; // Variable para controlar si la tecla shift está presionada
+let current = null; 
 
 renderKeyboard();
 
@@ -120,9 +121,31 @@ function renderKeyboard() {
     document.querySelectorAll('.key').forEach(key => {
         // Añadir un event listener para el evento de clic
         key.addEventListener('click', e => {
-            // Cuando se hace clic en una tecla, mostrar un mensaje de prueba en la consola
-            console.log('test click btn');
+            // Si la tecla presionada es SHIFT, cambiar su estado
+            if (key.textContent === 'SHIFT') {
+                shift = !shift; // Cambiar el estado de la tecla SHIFT
+            } else if (key.textContent === 'MAYUS') {
+                mayus = !mayus; // Cambiar el estado de la tecla MAYUS
+            } else if (key.textContent === '') {
+                current.value += " "; // Agregar un espacio si se presiona la tecla de espacio
+            } else {
+                // Agregar el texto de la tecla presionada al elemento de entrada actual
+                current.value += key.textContent;
+                // Si el shift está activado, desactivarlo después de presionar una tecla
+                if (shift) {
+                    shift = false;
+                }
+            }
+            renderKeyboard(); // Volver a renderizar el teclado
+            current.focus(); // Enfocar en el elemento de entrada actual
         });
     });
 
 }
+
+// Evento de enfoque en los elementos de entrada
+document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('focusin', e => {
+        current = e.target; // Asignar el elemento de entrada actual
+    });
+});;
