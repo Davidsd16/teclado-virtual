@@ -119,10 +119,12 @@ function renderKeyboard() {
 
     // Seleccionar todas las teclas del teclado utilizando su clase CSS ".key" y añadir un evento de clic a cada una
     document.querySelectorAll('.key').forEach(key => {
+        console.log(key);
         // Añadir un event listener para el evento de clic
         key.addEventListener('click', e => {
             // Si la tecla presionada es SHIFT, cambiar su estado
             if (key.textContent === 'SHIFT') {
+                console.log(key.textContent);
                 shift = !shift; // Cambiar el estado de la tecla SHIFT
             } else if (key.textContent === 'MAYUS') {
                 mayus = !mayus; // Cambiar el estado de la tecla MAYUS
