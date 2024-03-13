@@ -32,3 +32,36 @@ body {
     width: 120px;
     height: 70px;
 }
+.key-shift {
+    width: 80px;
+    height: 70px;
+}
+.key-space {
+    width: 400px;
+    height: 70px;
+}
+.key-empty {
+    width: 25px;
+    height: 70px;
+    background-color: transparent;
+    color: white;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.key:hover {
+    background-color: #555;
+}
+
+.activated {
+    outline: greenyellow solid 2px;
+}
+
+.input {
+    width: 500px;
+    padding: 20px;
+    font-size: 38px;
+    margin: 0 auto;
+    display: block;
+}
