@@ -119,30 +119,36 @@ function renderKeyboard() {
 
     // Seleccionar todas las teclas del teclado utilizando su clase CSS ".key" y añadir un evento de clic a cada una
     document.querySelectorAll('.key').forEach(key => {
-        console.log(key);
         // Añadir un event listener para el evento de clic
         key.addEventListener('click', e => {
             // Si la tecla presionada es SHIFT, cambiar su estado
             if (key.textContent === 'SHIFT') {
-                console.log(key.textContent);
                 shift = !shift; // Cambiar el estado de la tecla SHIFT
             } else if (key.textContent === 'MAYUS') {
                 mayus = !mayus; // Cambiar el estado de la tecla MAYUS
             } else if (key.textContent === '') {
-                current.value += " "; // Agregar un espacio si se presiona la tecla de espacio
+                // Verificar si current está definido y no es null antes de acceder a su propiedad value
+                if (current !== null && current !== undefined) {
+                    current.value += " "; // Agregar un espacio si se presiona la tecla de espacio
+                }
             } else {
-                // Agregar el texto de la tecla presionada al elemento de entrada actual
-                current.value += key.textContent;
-                // Si el shift está activado, desactivarlo después de presionar una tecla
-                if (shift) {
-                    shift = false;
+                // Verificar si current está definido y no es null antes de acceder a su propiedad value
+                if (current !== null && current !== undefined) {
+                    // Agregar el texto de la tecla presionada al elemento de entrada actual
+                    current.value += key.textContent;
+                    // Si el shift está activado, desactivarlo después de presionar una tecla
+                    if (shift) {
+                        shift = false;
+                    }
                 }
             }
             renderKeyboard(); // Volver a renderizar el teclado
-            current.focus(); // Enfocar en el elemento de entrada actual
+            // Verificar si current está definido y no es null antes de intentar enfocarlo
+            if (current !== null && current !== undefined) {
+                current.focus(); // Enfocar en el elemento de entrada actual
+            }
         });
     });
-
 }
 
 // Evento de enfoque en los elementos de entrada
@@ -150,4 +156,4 @@ document.querySelectorAll('input').forEach(input => {
     input.addEventListener('focusin', e => {
         current = e.target; // Asignar el elemento de entrada actual
     });
-});;
+});
